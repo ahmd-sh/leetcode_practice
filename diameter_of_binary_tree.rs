@@ -35,5 +35,23 @@ impl Solution {
             }
         }
         dfs(root).1
+
+        // // Python approach, translated to Rust
+        // let mut res = 0;
+        // fn dfs(root: Option<Rc<RefCell<TreeNode>>>, res: &mut i32) -> i32 {
+        //     match root {
+        //         Some(node) => {
+        //             let node_borrow = node.borrow();
+        //             let left = dfs(node_borrow.left.clone(), res);
+        //             let right = dfs(node_borrow.right.clone(), res);
+
+        //             *res = (*res).max(left + right + 2);
+        //             1 + left.max(right)
+        //         },
+        //         None => -1,
+        //     }
+        // }
+        // dfs(root, &mut res);
+        // res
     }
 }
