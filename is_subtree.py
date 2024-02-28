@@ -5,23 +5,28 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    def isSameTree(self, p, q):
+        if not p and not q:
+            return True
+
+        if p and q and p.val == q.val:
+            left = self.isSameTree(p.left, q.left)
+            right = self.isSameTree(p.right, q.right)
+            return left and right
+
+        return False
+
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        def isSameTree(p, q):
-            if not p and not q:
-                return True
-            if p and q and p.val == q.val:
-                left = isSameTree(p.left, q.left)
-                right = isSameTree(p.right, q.right)
-                return left and right
-            return False
+        if not subRoot:
+            return True
 
         if not root:
-            return True
-        if not subRoot:
             return False
-        if isSameTree(root, subRoot):
+
+        if self.isSameTree(root, subRoot):
             return True
 
-        left1 = self.isSubtree(root.left, subRoot)
-        right1 = self.isSubtree(root.right, subRoot)
-        return left1 or right1
+        left = self.isSubtree(root.left, subRoot)
+        right = self.isSubtree(root.right, subRoot)
+
+        return left or right
