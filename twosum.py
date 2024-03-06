@@ -1,12 +1,13 @@
 nums = [2, 7, 11, 15]
 target = 9
 
-hashMap = {}
-for i in range(len(nums)):
-    needed = target - nums[i]
-    res = hashMap.get(needed, -1)
+hashmap = {}
+
+for i, val in enumerate(nums):
+    needed = target - val
+    res = hashmap.get(needed, -1)
     if res != -1:
-        final = [nums[i], res]
-    hashMap[nums[i]] = i
+        final = [i, res]
+    hashmap[val] = i
 
 print(final)
